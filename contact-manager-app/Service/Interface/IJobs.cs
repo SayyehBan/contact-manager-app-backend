@@ -2,7 +2,7 @@
 
 namespace contact_manager_app.Service.Interface;
 
-public interface IGroups
+public interface IJobs
 {
-   Task<IEnumerable<VMGroup>> GetGroupsAsync();
+    Task<IEnumerable<VMJobs>> GetJobAsync();
 }
