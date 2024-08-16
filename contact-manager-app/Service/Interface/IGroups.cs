@@ -1,4 +1,4 @@
-﻿using contact_manager_app.Service.Model;
+﻿using contact_manager_app.Model.Entities;
 
 namespace contact_manager_app.Service.Interface;
 

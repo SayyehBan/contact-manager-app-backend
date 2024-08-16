@@ -1,6 +1,6 @@
-﻿using contact_manager_app.Service.Context;
+﻿using contact_manager_app.Infrastructure.Contexts;
+using contact_manager_app.Model.Entities;
 using contact_manager_app.Service.Interface;
-using contact_manager_app.Service.Model;
 using Dapper;
 using System.Data.SqlClient;
 

@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace contact_manager_app.Service.Context;
+namespace contact_manager_app.Infrastructure.Contexts;
 
 public class SqlServer
 {

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>contact-manager-app</name>
+    </assembly>
+    <members>
+        <member name="M:contact_manager_app.Controllers.ContactsController.GetContactsAsync">
+            <summary>
+            نمایش مخاطبین
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

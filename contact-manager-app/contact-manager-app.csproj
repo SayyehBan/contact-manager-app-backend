@@ -7,18 +7,22 @@
     <RootNamespace>contact_manager_app</RootNamespace>
     <UserSecretsId>f1ca51f5-3afa-4411-97b2-509bd46bee74</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>Contacs.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
-    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.14.8" />
+    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.15.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-    <PackageReference Include="SayyehBanTools" Version="1.4.2" />
+    <PackageReference Include="SayyehBanTools" Version="1.4.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="SQL\" />
+    <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

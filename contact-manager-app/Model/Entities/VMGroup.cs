@@ -1,4 +1,4 @@
-﻿namespace contact_manager_app.Service.Model;
+﻿namespace contact_manager_app.Model.Entities;
 
 public class VMGroup
 {
