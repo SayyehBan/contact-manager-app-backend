@@ -22,7 +22,7 @@ public class ContactsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<IActionResult> GetContactsAsync()
+    public async Task<IActionResult> GetContactAsync()
     {
         try
         {
@@ -67,7 +67,7 @@ public class ContactsController : ControllerBase
         }
     }
     [HttpPost]
-    public async Task<IActionResult> InsertContacts([FromForm] VMInsertContact Contacts)
+    public async Task<IActionResult> InsertContact([FromForm] VMInsertContact Contacts)
     {
         if (Contacts.File.File == null)
         {
@@ -83,18 +83,9 @@ public class ContactsController : ControllerBase
             Contacts.Photo = newFilePath;
 
 
-            var newContact = await rContacts.InsertContacts(Contacts);
+            var result = await rContacts.InsertContacts(Contacts);
 
-            var response = new VMGetContacts
-            {
-                ContactID = newContact,
-                FirstName = Contacts.FirstName,
-                LastName = Contacts.LastName,
-                Photo = Contacts.Photo,
-                Mobile = Contacts.Mobile,
-                Email = Contacts.Email
-            };
-            return new JsonResult(response);
+            return new JsonResult(result);
         }
     }
 

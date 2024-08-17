@@ -56,14 +56,14 @@ public class RContacts : IContacts
         }
     }
 
-    public async Task<int> InsertContacts(VMInsertContact contact)
+    public async Task<VMFindContactID> InsertContacts(VMInsertContact contact)
     {
         using (var con = new SqlConnection(SqlServer.ConnectionString()))
         {
             var sql = "InsertContact";
 
             await con.OpenAsync();
-            var result = await con.QuerySingleAsync<int>(sql, new
+            var result = await con.QuerySingleAsync<VMFindContactID>(sql, new
             {
                 FirstName = StringExtensions.CleanString(contact.FirstName),
                 LastName = StringExtensions.CleanString(contact.LastName),

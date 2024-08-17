@@ -4,7 +4,7 @@
         <name>contact-manager-app</name>
     </assembly>
     <members>
-        <member name="M:contact_manager_app.Controllers.ContactsController.GetContactsAsync">
+        <member name="M:contact_manager_app.Controllers.ContactsController.GetContactAsync">
             <summary>
             نمایش مخاطبین
             </summary>
