@@ -2,8 +2,15 @@
 
 namespace contact_manager_app.Infrastructure.Contexts;
 
+/// <summary>
+/// کلاس تنظیمات اتصال به پایگاه داده SQL Server
+/// </summary>
 public class SqlServer
 {
+    /// <summary>
+    /// ایجاد رشته اتصال به پایگاه داده
+    /// </summary>
+    /// <returns>رشته اتصال به SQL Server</returns>
     public static string ConnectionString()
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();

@@ -6,15 +6,22 @@ using System.Data.SqlClient;
 
 namespace contact_manager_app.Service.Repository;
 
+/// <summary>
+/// پیاده‌سازی سرویس مدیریت گروه‌های مخاطبین
+/// </summary>
 public class RGroups : IGroups
 {
 
+    /// <summary>
+    /// دریافت لیست تمام گروه‌ها
+    /// </summary>
+    /// <returns>لیست گروه‌های مخاطبین</returns>
     public async Task<IEnumerable<VMGroup>> GetGroupsAsync()
     {
         using (var connection = new SqlConnection(SqlServer.ConnectionString()))
         {
             var sql = "dbo.GetGroups";
-            var groups = await connection.QueryAsync<VMGroup>(sql,commandType:System.Data.CommandType.StoredProcedure);
+            var groups = await connection.QueryAsync<VMGroup>(sql, commandType: System.Data.CommandType.StoredProcedure);
             return groups.ToList();
         }
     }

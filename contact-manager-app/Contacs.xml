@@ -4,11 +4,452 @@
         <name>contact-manager-app</name>
     </assembly>
     <members>
+        <member name="T:contact_manager_app.ConfigureService.Configure.ConfigureTransient">
+            <summary>
+            کلاس پیکربندی سرویس‌های موقت
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.ConfigureService.Configure.ConfigureTransient.ConfigureTransients(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            پیکربندی سرویس‌های موقت در کانتینر DI
+            </summary>
+            <param name="services">کالکشن سرویس‌ها</param>
+        </member>
+        <member name="T:contact_manager_app.ConfigureService.Exceptions.ContactNotFoundException">
+            <summary>
+            استثنای سفارشی برای زمانی که مخاطب یافت نشود
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.ConfigureService.Exceptions.ContactNotFoundException.#ctor(System.String)">
+            <summary>
+            ایجاد نمونه جدید از استثنای عدم یافتن مخاطب
+            </summary>
+            <param name="message">پیام خطا</param>
+        </member>
+        <member name="T:contact_manager_app.ConfigureService.Extentions.SwaggerExtention">
+            <summary>
+            کلاس افزودنی برای پیکربندی Swagger
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.ConfigureService.Extentions.SwaggerExtention.AddOurSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            افزودن و پیکربندی Swagger به سرویس‌ها
+            </summary>
+            <param name="services">کالکشن سرویس‌ها</param>
+            <returns>کالکشن سرویس‌های به‌روز شده</returns>
+        </member>
+        <member name="T:contact_manager_app.Controllers.ContactsController">
+            <summary>
+            کنترلر برای مدیریت مخاطبین
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Controllers.ContactsController.#ctor(contact_manager_app.Service.Repository.RContacts)">
+            <summary>
+            نمونه سازی جدید از کنترلر مخاطبین
+            </summary>
+            <param name="rContacts">مخزن مخاطبین</param>
+        </member>
         <member name="M:contact_manager_app.Controllers.ContactsController.GetContactAsync">
             <summary>
             نمایش مخاطبین
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:contact_manager_app.Controllers.ContactsController.FindContactID(System.Int32)">
+            <summary>
+            یافتن مخاطب با شناسه
+            </summary>
+            <param name="ContactID">شناسه مخاطب برای جستجو</param>
+            <returns>در صورت پیدا شدن مخاطب برگردانده می شود، در غیر این صورت NotFound</returns>
+        </member>
+        <member name="M:contact_manager_app.Controllers.ContactsController.InsertContact(contact_manager_app.Model.Entities.VMInsertContact)">
+            <summary>
+            درج مخاطب جدید با تصویر آواتار
+            </summary>
+            <param name="Contacts">اطلاعات مخاطب و فایل برای آپلود</param>
+            <returns>جزئیات مخاطب ایجاد شده</returns>
+        </member>
+        <member name="M:contact_manager_app.Controllers.ContactsController.UpdateContact(contact_manager_app.Model.Entities.VMUpdateContact)">
+            <summary>
+            به روزرسانی مخاطب موجود و تصویر آواتار آن
+            </summary>
+            <param name="contact">اطلاعات به روز شده مخاطب و فایل جدید اختیاری</param>
+            <returns>جزئیات مخاطب به روز شده</returns>
+        </member>
+        <member name="M:contact_manager_app.Controllers.ContactsController.DeleteContact(System.Int32)">
+            <summary>
+            حذف مخاطب و تصویر آواتار مرتبط با آن
+            </summary>
+            <param name="ContactID">شناسه مخاطب برای حذف</param>
+            <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
+        </member>
+        <member name="T:contact_manager_app.Controllers.GroupsController">
+            <summary>
+            کنترلر برای مدیریت گروه‌های مخاطبین
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Controllers.GroupsController.#ctor(contact_manager_app.Service.Repository.RGroups)">
+            <summary>
+            نمونه سازی جدید از کنترلر گروه‌ها
+            </summary>
+            <param name="rGroups">مخزن گروه‌ها</param>
+        </member>
+        <member name="M:contact_manager_app.Controllers.GroupsController.GetGroupsAsync">
+            <summary>
+            دریافت تمام گروه‌های مخاطبین
+            </summary>
+            <returns>مجموعه‌ای از گروه‌های مخاطبین</returns>
+        </member>
+        <member name="T:contact_manager_app.Controllers.JobsController">
+            <summary>
+            کنترلر برای مدیریت شغل‌ها
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Controllers.JobsController.#ctor(contact_manager_app.Service.Repository.RJobs)">
+            <summary>
+            نمونه سازی جدید از کنترلر شغل‌ها
+            </summary>
+            <param name="rJobs">مخزن شغل‌ها</param>
+        </member>
+        <member name="M:contact_manager_app.Controllers.JobsController.GetJobsAsync">
+            <summary>
+            دریافت تمام شغل‌ها
+            </summary>
+            <returns>مجموعه‌ای از شغل‌ها</returns>
+        </member>
+        <member name="T:contact_manager_app.Infrastructure.Contexts.SqlServer">
+            <summary>
+            کلاس تنظیمات اتصال به پایگاه داده SQL Server
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Infrastructure.Contexts.SqlServer.ConnectionString">
+            <summary>
+            ایجاد رشته اتصال به پایگاه داده
+            </summary>
+            <returns>رشته اتصال به SQL Server</returns>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.ApiResponse`1">
+            <summary>
+            کلاس پاسخ عمومی API برای بازگرداندن نتایج
+            </summary>
+            <typeparam name="T">نوع داده‌ای که در پاسخ برگردانده می‌شود</typeparam>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.ApiResponse`1.IsSuccess">
+            <summary>
+            نشان‌دهنده موفقیت یا شکست عملیات
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.ApiResponse`1.Data">
+            <summary>
+            داده‌های برگشتی از عملیات
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.ApiResponse`1.Message">
+            <summary>
+            پیام توضیحی عملیات
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.UploadFile">
+            <summary>
+            کلاس مدل برای آپلود فایل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.UploadFile.File">
+            <summary>
+            فایل آپلود شده
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMGetContacts">
+            <summary>
+            مدل نمایش اطلاعات مخاطب برای دریافت
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.ContactID">
+            <summary>
+            شناسه مخاطب
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.FirstName">
+            <summary>
+            نام
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.LastName">
+            <summary>
+            نام خانوادگی
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.Photo">
+            <summary>
+            مسیر تصویر
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.Mobile">
+            <summary>
+            شماره موبایل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.Email">
+            <summary>
+            آدرس ایمیل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.JobTitle">
+            <summary>
+            عنوان شغل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.GroupTitle">
+            <summary>
+            عنوان گروه
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMContacts">
+            <summary>
+            مدل پایه برای عملیات‌های مخاطب
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.FirstName">
+            <summary>
+            نام
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.LastName">
+            <summary>
+            نام خانوادگی
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.Photo">
+            <summary>
+            مسیر تصویر
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.File">
+            <summary>
+            فایل آپلودی
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.Mobile">
+            <summary>
+            شماره موبایل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.Email">
+            <summary>
+            آدرس ایمیل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.JobID">
+            <summary>
+            شناسه شغل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMContacts.GroupID">
+            <summary>
+            شناسه گروه
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMFindContactID">
+            <summary>
+            مدل جستجوی مخاطب با شناسه
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMFindContactID.JobID">
+            <summary>
+            شناسه شغل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMFindContactID.GroupID">
+            <summary>
+            شناسه گروه
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMInsertContact">
+            <summary>
+            مدل درج مخاطب جدید
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMUpdateContact">
+            <summary>
+            مدل به‌روزرسانی مخاطب
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMUpdateContact.ContactID">
+            <summary>
+            شناسه مخاطب
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMDeleteContact">
+            <summary>
+            مدل حذف مخاطب
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMDeleteContact.Photo">
+            <summary>
+            مسیر تصویر مخاطب برای حذف
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMGroup">
+            <summary>
+            مدل نمایش گروه مخاطبین
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGroup.GroupID">
+            <summary>
+            شناسه گروه
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGroup.GroupTitle">
+            <summary>
+            عنوان گروه
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Model.Entities.VMJobs">
+            <summary>
+            مدل نمایش شغل‌ها
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMJobs.JobID">
+            <summary>
+            شناسه شغل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMJobs.JobTitle">
+            <summary>
+            عنوان شغل
+            </summary>
+        </member>
+        <member name="T:contact_manager_app.Service.Interface.IContacts">
+            <summary>
+            واسط سرویس مدیریت مخاطبین
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IContacts.GetContactsAsync">
+            <summary>
+            دریافت لیست تمام مخاطبین
+            </summary>
+            <returns>لیست مخاطبین</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IContacts.FindContactID(System.Int32)">
+            <summary>
+            یافتن مخاطب با شناسه
+            </summary>
+            <param name="ContactID">شناسه مخاطب</param>
+            <returns>اطلاعات مخاطب</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IContacts.InsertContacts(contact_manager_app.Model.Entities.VMInsertContact)">
+            <summary>
+            درج مخاطب جدید
+            </summary>
+            <param name="contact">اطلاعات مخاطب جدید</param>
+            <returns>اطلاعات مخاطب ثبت شده</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IContacts.UpdateContact(contact_manager_app.Model.Entities.VMUpdateContact)">
+            <summary>
+            به‌روزرسانی مخاطب
+            </summary>
+            <param name="contact">اطلاعات به‌روز شده مخاطب</param>
+            <returns>اطلاعات مخاطب به‌روز شده</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IContacts.DeleteContact(System.Int32)">
+            <summary>
+            حذف مخاطب
+            </summary>
+            <param name="ContactID">شناسه مخاطب</param>
+            <returns>اطلاعات مخاطب حذف شده</returns>
+        </member>
+        <member name="T:contact_manager_app.Service.Interface.IGroups">
+            <summary>
+            واسط سرویس مدیریت گروه‌های مخاطبین
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IGroups.GetGroupsAsync">
+            <summary>
+            دریافت لیست تمام گروه‌ها
+            </summary>
+            <returns>لیست گروه‌های مخاطبین</returns>
+        </member>
+        <member name="T:contact_manager_app.Service.Interface.IJobs">
+            <summary>
+            واسط سرویس مدیریت شغل‌ها
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Service.Interface.IJobs.GetJobAsync">
+            <summary>
+            دریافت لیست تمام شغل‌ها
+            </summary>
+            <returns>لیست شغل‌ها</returns>
+        </member>
+        <member name="T:contact_manager_app.Service.Repository.RContacts">
+            <summary>
+            پیاده‌سازی سرویس مدیریت مخاطبین
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RContacts.DeleteContact(System.Int32)">
+            <summary>
+            حذف مخاطب
+            </summary>
+            <param name="ContactID">شناسه مخاطب</param>
+            <returns>اطلاعات مخاطب حذف شده</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RContacts.FindContactID(System.Int32)">
+            <summary>
+            یافتن مخاطب با شناسه
+            </summary>
+            <param name="ContactID">شناسه مخاطب</param>
+            <returns>اطلاعات مخاطب</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RContacts.GetContactsAsync">
+            <summary>
+            دریافت لیست تمام مخاطبین
+            </summary>
+            <returns>لیست مخاطبین</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RContacts.InsertContacts(contact_manager_app.Model.Entities.VMInsertContact)">
+            <summary>
+            درج مخاطب جدید
+            </summary>
+            <param name="contact">اطلاعات مخاطب جدید</param>
+            <returns>اطلاعات مخاطب ثبت شده</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RContacts.UpdateContact(contact_manager_app.Model.Entities.VMUpdateContact)">
+            <summary>
+            به‌روزرسانی مخاطب
+            </summary>
+            <param name="contact">اطلاعات به‌روز شده مخاطب</param>
+            <returns>اطلاعات مخاطب به‌روز شده</returns>
+        </member>
+        <member name="T:contact_manager_app.Service.Repository.RGroups">
+            <summary>
+            پیاده‌سازی سرویس مدیریت گروه‌های مخاطبین
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RGroups.GetGroupsAsync">
+            <summary>
+            دریافت لیست تمام گروه‌ها
+            </summary>
+            <returns>لیست گروه‌های مخاطبین</returns>
+        </member>
+        <member name="T:contact_manager_app.Service.Repository.RJobs">
+            <summary>
+            پیاده‌سازی سرویس مدیریت شغل‌ها
+            </summary>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RJobs.GetJobAsync">
+            <summary>
+            دریافت لیست تمام شغل‌ها
+            </summary>
+            <returns>لیست شغل‌ها</returns>
+        </member>
+        <member name="T:contact_manager_app.Utilities.Constants.AppConstants">
+            <summary>
+            ثابت‌های برنامه
+            </summary>
+        </member>
+        <member name="F:contact_manager_app.Utilities.Constants.AppConstants.BaseRoot">
+            <summary>
+            مسیر پایه برای فایل‌های وب‌سایت
+            </summary>
         </member>
     </members>
 </doc>

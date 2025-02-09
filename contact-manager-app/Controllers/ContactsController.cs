@@ -7,12 +7,19 @@ using SayyehBanTools.ManageFile;
 
 namespace contact_manager_app.Controllers;
 
+/// <summary>
+/// کنترلر برای مدیریت مخاطبین
+/// </summary>
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class ContactsController : ControllerBase
 {
     private readonly RContacts rContacts;
 
+    /// <summary>
+    /// نمونه سازی جدید از کنترلر مخاطبین
+    /// </summary>
+    /// <param name="rContacts">مخزن مخاطبین</param>
     public ContactsController(RContacts rContacts)
     {
         this.rContacts = rContacts;
@@ -31,15 +38,20 @@ public class ContactsController : ControllerBase
         }
         catch (ContactNotFoundException)
         {
-            return NotFound("Contacts not found");
+            return NotFound("مخاطبی یافت نشد");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            // Log the exception
-            return StatusCode(500, "Internal server error");
+            // ثبت خطا
+            return StatusCode(500, "خطای داخلی سرور");
         }
     }
 
+    /// <summary>
+    /// یافتن مخاطب با شناسه
+    /// </summary>
+    /// <param name="ContactID">شناسه مخاطب برای جستجو</param>
+    /// <returns>در صورت پیدا شدن مخاطب برگردانده می شود، در غیر این صورت NotFound</returns>
     [HttpGet]
     public async Task<IActionResult> FindContactID(int ContactID)
     {
@@ -58,18 +70,23 @@ public class ContactsController : ControllerBase
         }
         catch (ContactNotFoundException)
         {
-            return NotFound("Contacts not found");
+            return NotFound("مخاطبی یافت نشد");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            // Log the exception
-            return StatusCode(500, "Internal server error\n" + ex.Message);
+            // ثبت خطا
+            return StatusCode(500, "خطای داخلی سرور\n");
         }
     }
+    /// <summary>
+    /// درج مخاطب جدید با تصویر آواتار
+    /// </summary>
+    /// <param name="Contacts">اطلاعات مخاطب و فایل برای آپلود</param>
+    /// <returns>جزئیات مخاطب ایجاد شده</returns>
     [HttpPost]
     public async Task<IActionResult> InsertContact([FromForm] VMInsertContact Contacts)
     {
-        if (Contacts.File.File == null)
+        if (Contacts.File?.File == null)
         {
             return Content("تصویر انتخاب نشده");
         }
@@ -78,7 +95,7 @@ public class ContactsController : ControllerBase
 
             var basePath = AppConstants.BaseRoot + "Uploads/Avatars/";
 
-            var file = Contacts.File.File;
+            var file = Contacts.File!.File!;
             var newFilePath = await ManageFiles.UploadFileAsync(basePath, file);
             Contacts.Photo = newFilePath;
 
@@ -89,10 +106,15 @@ public class ContactsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// به روزرسانی مخاطب موجود و تصویر آواتار آن
+    /// </summary>
+    /// <param name="contact">اطلاعات به روز شده مخاطب و فایل جدید اختیاری</param>
+    /// <returns>جزئیات مخاطب به روز شده</returns>
     [HttpPut]
     public async Task<IActionResult> UpdateContact([FromForm] VMUpdateContact contact)
     {
-        if (contact.File == null)
+        if (contact.File?.File == null)
         {
             contact.Photo = null;
             var newContact = await rContacts.UpdateContact(contact);
@@ -100,11 +122,10 @@ public class ContactsController : ControllerBase
         }
         else
         {
-
             await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + contact.Photo);
 
             var basePath = AppConstants.BaseRoot + "Uploads/Avatars/";
-            var file = contact.File.File;
+            var file = contact.File!.File!;
             var newFilePath = await ManageFiles.UploadFileAsync(basePath, file);
             contact.Photo = newFilePath;
 
@@ -112,6 +133,11 @@ public class ContactsController : ControllerBase
             return new JsonResult(newContact);
         }
     }
+    /// <summary>
+    /// حذف مخاطب و تصویر آواتار مرتبط با آن
+    /// </summary>
+    /// <param name="ContactID">شناسه مخاطب برای حذف</param>
+    /// <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
     [HttpDelete]
     public async Task<IActionResult> DeleteContact([FromForm] int ContactID)
     {
@@ -131,12 +157,12 @@ public class ContactsController : ControllerBase
         }
         catch (ContactNotFoundException)
         {
-            return NotFound("Contacts not found");
+            return NotFound("مخاطبی یافت نشد");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            // Log the exception
-            return StatusCode(500, "Internal server error");
+            // ثبت خطا
+            return StatusCode(500, "خطای داخلی سرور");
         }
 
     }

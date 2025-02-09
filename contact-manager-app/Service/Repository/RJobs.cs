@@ -6,8 +6,15 @@ using System.Data.SqlClient;
 
 namespace contact_manager_app.Service.Repository;
 
+/// <summary>
+/// پیاده‌سازی سرویس مدیریت شغل‌ها
+/// </summary>
 public class RJobs : IJobs
 {
+    /// <summary>
+    /// دریافت لیست تمام شغل‌ها
+    /// </summary>
+    /// <returns>لیست شغل‌ها</returns>
     public async Task<IEnumerable<VMJobs>> GetJobAsync()
     {
         using (var connection = new SqlConnection(SqlServer.ConnectionString()))
