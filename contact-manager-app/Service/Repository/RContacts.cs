@@ -5,7 +5,6 @@ using Dapper;
 using SayyehBanTools.Converter;
 using System.Data;
 using System.Data.SqlClient;
-using contact_manager_app.ConfigureService.Exceptions;
 
 namespace contact_manager_app.Service.Repository;
 
@@ -104,18 +103,21 @@ public class RContacts : IContacts
         {
             var sql = "dbo.UpdateContact";
             await con.OpenAsync();
-            var result = await con.QuerySingleAsync<VMFindContactID>(sql, new
+            var result = await con.QuerySingleOrDefaultAsync<VMFindContactID>(sql, new
             {
                 ContactID = contact.ContactID,
                 FirstName = StringExtensions.CleanString(contact.FirstName ?? ""),
                 LastName = StringExtensions.CleanString(contact.LastName ?? ""),
-                Photo = StringExtensions.CleanString(contact.Photo ?? ""),
+                Photo = contact.Photo,
+                //Photo = string.IsNullOrEmpty(contact.Photo) ? null : contact.Photo,
                 Mobile = StringExtensions.CleanString(contact.Mobile ?? ""),
                 Email = StringExtensions.CleanString(contact.Email ?? ""),
                 JobID = contact.JobID,
                 GroupID = contact.GroupID
             }, commandType: CommandType.StoredProcedure);
+
             return result;
         }
     }
+
 }

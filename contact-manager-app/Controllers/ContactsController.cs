@@ -88,7 +88,8 @@ public class ContactsController : ControllerBase
     {
         if (Contacts.File?.File == null)
         {
-            return Content("تصویر انتخاب نشده");
+            var result = await rContacts.InsertContacts(Contacts);
+            return new JsonResult(result);
         }
         else
         {
@@ -96,6 +97,7 @@ public class ContactsController : ControllerBase
             var basePath = AppConstants.BaseRoot + "Uploads/Avatars/";
 
             var file = Contacts.File!.File!;
+            await ManageFiles.DeleteFileServer(basePath + Contacts.Photo);
             var newFilePath = await ManageFiles.UploadFileAsync(basePath, file);
             Contacts.Photo = newFilePath;
 
