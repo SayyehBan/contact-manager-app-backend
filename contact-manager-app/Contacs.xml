@@ -204,6 +204,16 @@
             عنوان گروه
             </summary>
         </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.JobID">
+            <summary>
+            شناسه شغل
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMGetContacts.GroupID">
+            <summary>
+            شناسه گروه
+            </summary>
+        </member>
         <member name="T:contact_manager_app.Model.Entities.VMContacts">
             <summary>
             مدل پایه برای عملیات‌های مخاطب

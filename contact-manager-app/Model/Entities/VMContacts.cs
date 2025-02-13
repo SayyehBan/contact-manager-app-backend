@@ -44,6 +44,16 @@ public class VMGetContacts
     /// عنوان گروه
     /// </summary>
     public string? GroupTitle { get; set; }
+
+    /// <summary>
+    /// شناسه شغل
+    /// </summary>
+    public int JobID { get; set; }
+
+    /// <summary>
+    /// شناسه گروه
+    /// </summary>
+    public int GroupID { get; set; }
 }
 
 /// <summary>
@@ -100,12 +110,12 @@ public class VMFindContactID : VMGetContacts
     /// <summary>
     /// شناسه شغل
     /// </summary>
-    public int JobID { get; set; }
+    public new int JobID { get; set; }
 
     /// <summary>
     /// شناسه گروه
     /// </summary>
-    public int GroupID { get; set; }
+    public new int GroupID { get; set; }
 }
 
 /// <summary>

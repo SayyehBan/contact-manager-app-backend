@@ -18,7 +18,7 @@ public interface IContacts
     /// </summary>
     /// <param name="ContactID">شناسه مخاطب</param>
     /// <returns>اطلاعات مخاطب</returns>
-    Task<VMFindContactID> FindContactID(int ContactID);
+    Task<VMFindContactID?> FindContactID(int ContactID);
 
     /// <summary>
     /// درج مخاطب جدید

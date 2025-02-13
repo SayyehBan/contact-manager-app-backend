@@ -42,21 +42,14 @@ public class RContacts : IContacts
     /// </summary>
     /// <param name="ContactID">شناسه مخاطب</param>
     /// <returns>اطلاعات مخاطب</returns>
-    public async Task<VMFindContactID> FindContactID(int ContactID)
+    public async Task<VMFindContactID?> FindContactID(int ContactID)
     {
         using (var connection = new SqlConnection(SqlServer.ConnectionString()))
         {
             var sql = "dbo.FindContactID";
             var parameters = new { ContactID = ContactID };
             var result = await connection.QueryFirstOrDefaultAsync<VMFindContactID>(sql, parameters, commandType: CommandType.StoredProcedure);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                return null;
-            }
+            return result;
         }
     }
 
