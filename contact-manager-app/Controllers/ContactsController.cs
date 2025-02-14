@@ -112,9 +112,10 @@ public class ContactsController : ControllerBase
     /// به روزرسانی مخاطب موجود و تصویر آواتار آن
     /// </summary>
     /// <param name="contact">اطلاعات به روز شده مخاطب و فایل جدید اختیاری</param>
+    /// <param name="OldPhoto">آدرس تصویر قبلی</param>
     /// <returns>جزئیات مخاطب به روز شده</returns>
     [HttpPut]
-    public async Task<IActionResult> UpdateContact([FromForm] VMUpdateContact contact)
+    public async Task<IActionResult> UpdateContact([FromForm] VMUpdateContact contact,string? OldPhoto)
     {
         if (contact.File?.File == null)
         {
@@ -124,7 +125,7 @@ public class ContactsController : ControllerBase
         }
         else
         {
-            await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + contact.Photo);
+            await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + OldPhoto);
 
             var basePath = AppConstants.BaseRoot + "Uploads/Avatars/";
             var file = contact.File!.File!;
@@ -139,9 +140,10 @@ public class ContactsController : ControllerBase
     /// حذف مخاطب و تصویر آواتار مرتبط با آن
     /// </summary>
     /// <param name="ContactID">شناسه مخاطب برای حذف</param>
+    /// <param name="OldPhoto">آدرس تصویر قبلی</param>
     /// <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
     [HttpDelete]
-    public async Task<IActionResult> DeleteContact([FromForm] int ContactID)
+    public async Task<IActionResult> DeleteContact([FromForm] int ContactID,string? OldPhoto)
     {
         try
         {
@@ -152,7 +154,7 @@ public class ContactsController : ControllerBase
             }
             else
             {
-                await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + contacts.Photo);
+                await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + OldPhoto);
                 return Content("حذف با موفیت انجام شد");
             }
 

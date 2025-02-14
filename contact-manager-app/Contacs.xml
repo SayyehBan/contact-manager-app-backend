@@ -69,18 +69,20 @@
             <param name="Contacts">اطلاعات مخاطب و فایل برای آپلود</param>
             <returns>جزئیات مخاطب ایجاد شده</returns>
         </member>
-        <member name="M:contact_manager_app.Controllers.ContactsController.UpdateContact(contact_manager_app.Model.Entities.VMUpdateContact)">
+        <member name="M:contact_manager_app.Controllers.ContactsController.UpdateContact(contact_manager_app.Model.Entities.VMUpdateContact,System.String)">
             <summary>
             به روزرسانی مخاطب موجود و تصویر آواتار آن
             </summary>
             <param name="contact">اطلاعات به روز شده مخاطب و فایل جدید اختیاری</param>
+            <param name="OldPhoto">آدرس تصویر قبلی</param>
             <returns>جزئیات مخاطب به روز شده</returns>
         </member>
-        <member name="M:contact_manager_app.Controllers.ContactsController.DeleteContact(System.Int32)">
+        <member name="M:contact_manager_app.Controllers.ContactsController.DeleteContact(System.Int32,System.String)">
             <summary>
             حذف مخاطب و تصویر آواتار مرتبط با آن
             </summary>
             <param name="ContactID">شناسه مخاطب برای حذف</param>
+            <param name="OldPhoto">آدرس تصویر قبلی</param>
             <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
         </member>
         <member name="T:contact_manager_app.Controllers.GroupsController">
