@@ -39,5 +39,5 @@ public interface IContacts
     /// </summary>
     /// <param name="ContactID">شناسه مخاطب</param>
     /// <returns>اطلاعات مخاطب حذف شده</returns>
-    Task<VMDeleteContact?> DeleteContact(int ContactID);
+    Task<int> DeleteContact(int ContactID);
 }

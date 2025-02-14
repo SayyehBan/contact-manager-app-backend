@@ -77,13 +77,12 @@
             <param name="OldPhoto">آدرس تصویر قبلی</param>
             <returns>جزئیات مخاطب به روز شده</returns>
         </member>
-        <member name="M:contact_manager_app.Controllers.ContactsController.DeleteContact(System.Int32,System.String)">
-            <summary>
-            حذف مخاطب و تصویر آواتار مرتبط با آن
-            </summary>
-            <param name="ContactID">شناسه مخاطب برای حذف</param>
-            <param name="OldPhoto">آدرس تصویر قبلی</param>
-            <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
+        <member name="M:contact_manager_app.Controllers.ContactsController.DeleteContact(contact_manager_app.Model.Entities.VMDeleteContact)">
+             <summary>
+             حذف مخاطب و تصویر آواتار مرتبط با آن
+             </summary>
+            <!-- <param name="contact">اطلاعات مخاطب برای حذف</param> -->
+             <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
         </member>
         <member name="T:contact_manager_app.Controllers.GroupsController">
             <summary>
@@ -296,7 +295,12 @@
             مدل حذف مخاطب
             </summary>
         </member>
-        <member name="P:contact_manager_app.Model.Entities.VMDeleteContact.Photo">
+        <member name="P:contact_manager_app.Model.Entities.VMDeleteContact.ContactID">
+            <summary>
+            شناسه مخاطب برای حذف
+            </summary>
+        </member>
+        <member name="P:contact_manager_app.Model.Entities.VMDeleteContact.OldPhoto">
             <summary>
             مسیر تصویر مخاطب برای حذف
             </summary>

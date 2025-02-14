@@ -18,23 +18,17 @@ public class RContacts : IContacts
     /// </summary>
     /// <param name="ContactID">شناسه مخاطب</param>
     /// <returns>اطلاعات مخاطب حذف شده</returns>
-    public async Task<VMDeleteContact?> DeleteContact(int ContactID)
+    public async Task<int> DeleteContact(int ContactID)
     {
         using (var connection = new SqlConnection(SqlServer.ConnectionString()))
         {
             var sql = "dbo.DeleteContact";
             var parameters = new { ContactID = ContactID };
-            var result = await connection.QueryFirstAsync<VMDeleteContact>(sql, parameters, commandType: CommandType.StoredProcedure);
-            if (result.Photo != null)
-            {
-                return result;
-            }
-            else
-            {
-                return null;
-            }
+            var result = await connection.QuerySingleAsync<int>(sql, parameters, commandType: CommandType.StoredProcedure);
+            return result;
         }
     }
+
 
     /// <summary>
     /// یافتن مخاطب با شناسه
@@ -109,14 +103,19 @@ public class RContacts : IContacts
                 FirstName = StringExtensions.CleanString(contact.FirstName ?? ""),
                 LastName = StringExtensions.CleanString(contact.LastName ?? ""),
                 Photo = contact.Photo,
-                //Photo = string.IsNullOrEmpty(contact.Photo) ? null : contact.Photo,
                 Mobile = StringExtensions.CleanString(contact.Mobile ?? ""),
                 Email = StringExtensions.CleanString(contact.Email ?? ""),
                 JobID = contact.JobID,
                 GroupID = contact.GroupID
             }, commandType: CommandType.StoredProcedure);
-
-            return result;
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new Exception("مخاطب یافت نشد");
+            }
         }
     }
 

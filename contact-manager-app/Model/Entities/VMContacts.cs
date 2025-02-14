@@ -140,9 +140,13 @@ public class VMUpdateContact : VMContacts
 /// مدل حذف مخاطب
 /// </summary>
 public class VMDeleteContact
-{
+{   
+    /// <summary>
+    /// شناسه مخاطب برای حذف
+    /// </summary>
+    public int ContactID { get; set; }
     /// <summary>
     /// مسیر تصویر مخاطب برای حذف
     /// </summary>
-    public string? Photo { get; set; }
+    public string? OldPhoto { get; set; }
 }

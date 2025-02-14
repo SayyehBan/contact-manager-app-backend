@@ -139,22 +139,21 @@ public class ContactsController : ControllerBase
     /// <summary>
     /// حذف مخاطب و تصویر آواتار مرتبط با آن
     /// </summary>
-    /// <param name="ContactID">شناسه مخاطب برای حذف</param>
-    /// <param name="OldPhoto">آدرس تصویر قبلی</param>
+    ///<!-- <param name="contact">اطلاعات مخاطب برای حذف</param> -->
     /// <returns>در صورت حذف موفق پیام موفقیت، در غیر این صورت NotFound</returns>
     [HttpDelete]
-    public async Task<IActionResult> DeleteContact([FromForm] int ContactID,string? OldPhoto)
+    public async Task<IActionResult> DeleteContact([FromQuery] VMDeleteContact contact)
     {
         try
         {
-            var contacts = await rContacts.DeleteContact(ContactID);
-            if (contacts == null)
+            int result = await rContacts.DeleteContact(contact.ContactID);
+            if (result == 0)
             {
                 return NotFound();
             }
             else
             {
-                await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + OldPhoto);
+                await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + contact.OldPhoto);
                 return Content("حذف با موفیت انجام شد");
             }
 
@@ -168,6 +167,5 @@ public class ContactsController : ControllerBase
             // ثبت خطا
             return StatusCode(500, "خطای داخلی سرور");
         }
-
     }
 }
