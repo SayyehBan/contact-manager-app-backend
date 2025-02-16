@@ -55,6 +55,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:contact_manager_app.Controllers.ContactsController.GetSearchContactsAsync(System.String)">
+            <summary>
+            جستجوی مخاطب بر اساس نام و نام خانوادگی
+            </summary>
+            <param name="FullName"></param>
+            <returns></returns>
+        </member>
         <member name="M:contact_manager_app.Controllers.ContactsController.FindContactID(System.Int32)">
             <summary>
             یافتن مخاطب با شناسه
@@ -346,6 +353,13 @@
             </summary>
             <returns>لیست مخاطبین</returns>
         </member>
+        <member name="M:contact_manager_app.Service.Interface.IContacts.GetSearchContactsAsync(System.String)">
+            <summary>
+            جستجوی مخاطب بر اساس نام و نام خانوادگی
+            </summary>
+            <param name="FullName"></param>
+            <returns></returns>
+        </member>
         <member name="M:contact_manager_app.Service.Interface.IContacts.FindContactID(System.Int32)">
             <summary>
             یافتن مخاطب با شناسه
@@ -420,6 +434,13 @@
             دریافت لیست تمام مخاطبین
             </summary>
             <returns>لیست مخاطبین</returns>
+        </member>
+        <member name="M:contact_manager_app.Service.Repository.RContacts.GetSearchContactsAsync(System.String)">
+            <summary>
+            جستجوی مخاطب بر اساس نام و نام خانوادگی
+            </summary>
+            <param name="FullName"></param>
+            <returns></returns>
         </member>
         <member name="M:contact_manager_app.Service.Repository.RContacts.InsertContacts(contact_manager_app.Model.Entities.VMInsertContact)">
             <summary>

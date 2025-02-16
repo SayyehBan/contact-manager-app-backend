@@ -12,6 +12,12 @@ public interface IContacts
     /// </summary>
     /// <returns>لیست مخاطبین</returns>
     Task<IEnumerable<VMGetContacts>> GetContactsAsync();
+    /// <summary>
+    /// جستجوی مخاطب بر اساس نام و نام خانوادگی
+    /// </summary>
+    /// <param name="FullName"></param>
+    /// <returns></returns>
+    Task<IEnumerable<VMGetContacts>> GetSearchContactsAsync(string FullName);
 
     /// <summary>
     /// یافتن مخاطب با شناسه

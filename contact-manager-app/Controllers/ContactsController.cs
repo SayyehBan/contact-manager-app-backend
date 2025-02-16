@@ -46,7 +46,29 @@ public class ContactsController : ControllerBase
             return StatusCode(500, "خطای داخلی سرور");
         }
     }
-
+    /// <summary>
+    /// جستجوی مخاطب بر اساس نام و نام خانوادگی
+    /// </summary>
+    /// <param name="FullName"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<IActionResult> GetSearchContactsAsync(string FullName)
+    {
+        try
+        {
+            var contacts = await rContacts.GetSearchContactsAsync(FullName);
+            return new JsonResult(contacts);
+        }
+        catch (ContactNotFoundException)
+        {
+            return NotFound("مخاطبی یافت نشد");
+        }
+        catch (Exception)
+        {
+            // ثبت خطا
+            return StatusCode(500, "خطای داخلی سرور");
+        }
+    }
     /// <summary>
     /// یافتن مخاطب با شناسه
     /// </summary>

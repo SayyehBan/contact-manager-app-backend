@@ -59,7 +59,21 @@ public class RContacts : IContacts
             return groups.ToList();
         }
     }
-
+    /// <summary>
+    /// جستجوی مخاطب بر اساس نام و نام خانوادگی
+    /// </summary>
+    /// <param name="FullName"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<VMGetContacts>> GetSearchContactsAsync(string FullName)
+    {
+        using (var con = new SqlConnection(SqlServer.ConnectionString()))
+        {
+            var sql = "[dbo].[SearchContacts]";
+            var parameters = new { FullName = FullName };
+            var result = await con.QueryAsync<VMGetContacts>(sql, parameters, commandType: CommandType.StoredProcedure);
+            return result;
+        }
+    }
     /// <summary>
     /// درج مخاطب جدید
     /// </summary>
