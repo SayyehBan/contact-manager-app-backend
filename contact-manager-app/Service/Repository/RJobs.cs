@@ -2,7 +2,7 @@
 using contact_manager_app.Model.Entities;
 using contact_manager_app.Service.Interface;
 using Dapper;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace contact_manager_app.Service.Repository;
 

@@ -52,11 +52,11 @@ public class ContactsController : ControllerBase
     /// <param name="FullName"></param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<IActionResult> GetSearchContactsAsync(string FullName)
+    public async Task<IActionResult> GetSearchContactsAsync(string? FullName)
     {
         try
         {
-            var contacts = await rContacts.GetSearchContactsAsync(FullName);
+            var contacts = await rContacts.GetSearchContactsAsync(FullName ?? string.Empty);
             return new JsonResult(contacts);
         }
         catch (ContactNotFoundException)
@@ -110,8 +110,7 @@ public class ContactsController : ControllerBase
     {
         if (Contacts.File?.File == null)
         {
-            var result = await rContacts.InsertContacts(Contacts);
-            return new JsonResult(result);
+            return Content("فایل آپلودی موجود نیست");   
         }
         else
         {
@@ -176,7 +175,7 @@ public class ContactsController : ControllerBase
             else
             {
                 await ManageFiles.DeleteFileServer(AppConstants.BaseRoot + contact.OldPhoto);
-                return Content("حذف با موفیت انجام شد");
+                return Content(result.ToString());
             }
 
         }

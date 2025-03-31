@@ -4,7 +4,7 @@ using contact_manager_app.Service.Interface;
 using Dapper;
 using SayyehBanTools.Converter;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace contact_manager_app.Service.Repository;
 
